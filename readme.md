@@ -4,32 +4,32 @@
 ### Table of Content
 ==============
 
-[Part I   : THUTag Contents](#1)
+[Part I   : THUTag Contents](#part-i-thutag-contents)
 
-[Part II  : How To Compile THUTag](#2)
+[Part II  : How To Compile THUTag](#part-ii-how-to-compile-thutag)
 
-[Part III : How To Run Cross-validation of THUTag](#3)
+[Part III : How To Run Cross-validation of THUTag](#part-iii-how-to-run-cross-validation-of-thutag)
 
-[Part IV  : Input File Formats of Cross-validation](#4)
+[Part IV  : Input File Formats of Cross-validation](#part-iv-datasets-and-formats-for-evaluation)
 
-[Part V   : Output File Formats of Cross-validation](#5)
+[Part V   : Output File Formats of Cross-validation](#part-v-output-file-formats-of-cross-validation)
 
-[Part VI  : How To Run UI && Testing a single passage of THUTag](#6)
+[Part VI  : How To Run UI && Testing a single passage of THUTag](#part-vi-how-to-run-ui--test-a-single-passage-with-thutag)
 
-[Part VII : Input File Formats of UI && Testing a single passage](#7)
+[Part VII : Input File Formats of UI && Testing a single passage](#part-vii-input-file-formats-of-ui--testing-a-single-passage)
 
-[Part VIII: Output File Formats of UI && Testing a single passage](#8)
+[Part VIII: Output File Formats of UI && Testing a single passage](#part-viii-output-file-formats-of-ui--testing-a-single-passage)
 
-[Part IX  : Literature](#9)
+[Part IX  : Literature](#part-ix-literature)
 
-[Part X   : License](#10)
+[Part X   : License](#part-x-license)
 
-[Part XI  : Authors](#11)
+[Part XI  : Authors](#part-xi-authors)
 
-[Part XII : Appendix](#12)
+[Part XII : Appendix](#part-xii-appendix)
 
 
-### <span id="1">Part I: THUTag Contents</span>
+### Part I: THUTag Contents
 ==============
 
 The package contains mutiple algorithms for Keyphrase Extraction and Social Tag Suggestion including a Cross-Validation Evaluator.
@@ -40,7 +40,7 @@ The package contains mutiple algorithms for Keyphrase Extraction and Social Tag 
 
 `./basepackage/` : some codes achieve things such as word segmentation, pagerank and so on
  
-### <span id="2">Part II: How To Compile THUTag</span>
+### Part II: How To Compile THUTag
 ==============
 
 Environment : java (support java 1.8.0) , Linux
@@ -48,7 +48,7 @@ Environment : java (support java 1.8.0) , Linux
 ant : Start a terminal in the directory `./THUTag/`, input command `ant` and then THUTag will be compiled; or you can choose the **build.xml** for *ant build* in eclipse.
 
 
-### <span id="3">Part III: How To Run Cross-validation of THUTag</span>
+### Part III: How To Run Cross-validation of THUTag
 ==============
 
 There are a lot of examples in file `./Command_Example`.And there is a demo in `./demo`.You'd use commandline to run the algorithm beacuse it need to set the working RAM.
@@ -111,7 +111,7 @@ The evaluation results on Keyword Post Dataset (M_d=2,select the two keywords wi
 
 And if you use the file **chinese_stopword_more** to clean the adv.,conj. and so on,you may get better evaluation score.
 
-### <span id="4">Part IV: Datasets and Formats for Evaluation</span>
+### Part IV: Datasets and Formats for Evaluation
 ==============
 
 We share two datasets in **traindata/** for evaluation. The both datasets are in Chinese. The **KeywordPost.dot** is from NetEase News, which can be used for keyphrase extraction algorithm. The **bookPost70000.dat** and **post.dat** are from Douban Book, which can be used for social tag suggestion algorithm. The formats of these datasets are as follows:
@@ -125,7 +125,7 @@ dataType=Post : {
 	"timestamp":0,
 	"title":"document title",
 	"userId":"",
-	"tags":["tag1","tag2","tag3",...]
+	"tags":["tag1","tag2","tag3"]
 }   //(Focus on books)
 ```
 
@@ -146,14 +146,13 @@ Example :
 ```json
 dataType=DoubanPost : {
 	"doubanTags": {
-		"tag1":weight,
-		"tag2":weight,
-		"tag3":weight,
-		...
+		"tag1":1, // weight
+		"tag2":2, // weight
+		"tag3":3  // weight
 	},
 	"id":"document id",
 	"content":"document content",
-	"tags":[empty],
+	"tags":[],
 	"timestamp":0,
 	"resourceKey":"",
 	"title":"document title",
@@ -187,7 +186,7 @@ The difference of the above two is that **bookPost70000.dat** is used for WTM/PM
 ```json
 dataType=KeywordPost : {
 	"date": "news date",
-	"summary":"news summary"，
+	"summary":"news summary",
 	"source":"news source",
 	"id":"document id",
 	"content":"document content",
@@ -195,7 +194,7 @@ dataType=KeywordPost : {
 	"resourceKey":"",
 	"extras":"",
 	"userId":"",
-	"tags":["tag1","tag2","tag3",...]
+	"tags":["tag1","tag2","tag3"]
 }  //(Focus on news)
 ```
 
@@ -217,14 +216,14 @@ Example :
 
 The **KeywordPost.dat** is used for keyphrase extraction algorithm.
 
-### <span id="5">Part V: Output File Formats of Cross-validation</span>
+### Part V: Output File Formats of Cross-validation
 ==============
 
 The output is a text file,whose first seven columns are the major data.From the first column to the seventh column are these in order: the number of keywords that we ask the algorithm to output | precision rate(Pre.) | the variance of precision rate | recall rate(Rec.) | the variance of recall rate | Fmeans | the variance of Fmeans
 
 we have that 2 / Fmeans = 1 / Pre. +1 / Rec.
 
-### <span id="6">Part VI: How To Run UI & Test a Single Passage with THUTag</span>
+### Part VI: How To Run UI & Test a Single Passage with THUTag
 ==============
 
 Command for training model : 
@@ -288,21 +287,21 @@ The default path of **book.model** and **chinese_stop_word.txt** is the same wit
 If you want to run WTM/WAM/WAM*, you need another three files GIZA++, mkcls, and plain2snt.out. Their default path is the same with the path of **tagsuggest.jar**.If you need change the path of them, you should add `--giza_path="Path of them"` as a parameter to the command. 
 
 
-### <span id="7">Part VII: Input File Formats of UI & Testing a Single Passage</span>
+### Part VII: Input File Formats of UI & Testing a Single Passage
 ==============
 
 In the UI interface,you can input text directly.
 
 And when test a individual text file,the text file must contains two lines:the first line is the title of the article and the second line is the content of the article.You can change the format in evaluation.TestDemo's doSuggest.
 
-### <span id="8">Part VIII: Output File Formats of UI & Testing a Single Passage</span>
+### Part VIII: Output File Formats of UI & Testing a Single Passage
 ==============
 
 In the UI interface,our program will show the keywords to the screen directly.
 
 And when test a individual text file,the program will give back a text file with ten keywords that the algorithm forecast and their corresponding weights.
 
-### <span id="9">Part IX: Literature</span>
+### Part IX: Literature
 ==============
 If you are using the package, please acknowledge the package by citing the paper:
 	
@@ -325,12 +324,12 @@ If you’re dealing in depth with particular algorithms, you are also encouraged
 | TAM | Xiance Si, Zhiyuan Liu, Maosong Sun. Modeling Social Annotations via Latent Reason Identification. IEEE Intelligent Systems, 2010. |
 | WTM | Zhiyuan Liu, Xinxiong Chen, Maosong Sun. A Simple Word Trigger Method for Social Tag Suggestion. The Conference on Empirical Methods in Natural Language Processing (EMNLP 2011). |
 
-### <span id="10">Part X: License</span>
+### Part X: License
 ==============
 
 THUTag is licensed under the GNU General Public License (v3 or later). Note that the license is the full GPL, which allows many free uses, but not its use in proprietary software which is distributed to others. For distributors of proprietary software, commercial licensing is available from Tsinghua University. You can contact us at thunlp@gmail.com .
 
-### <span id="11">Part XI: Authors</span>
+### Part XI: Authors
 ==============
 
 Contributors: Xinxiong Chen, Deming Ye, Xiance Si, Zhiyuan Liu.
@@ -339,7 +338,7 @@ Supervisor: Prof. Maosong Sun.
 
 For any questions about this package, you can contact us at thunlp@gmail.com .
 
-### <span id="12">Part XII: Appendix</span>
+### Part XII: Appendix
 ==============
 The correspondence between Training Class and Suggesting Class
 There are a lot of examples in file "Command_Example".
